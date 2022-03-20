@@ -1,0 +1,16 @@
+<?php
+/*
+ * @author    Amin Latifkar <amin.latifkar@gmail.com>
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function development_badge_theme($existing, $type, $theme, $path)
+{
+  return [
+    'development_badge' => [
+      'variables' => ['website_mode' => NULL, 'website_mode_array' => []],
+    ],
+  ];
+}
