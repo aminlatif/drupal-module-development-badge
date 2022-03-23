@@ -2,6 +2,17 @@
 /*
  * @author    Amin Latifkar <amin.latifkar@gmail.com>
  */
+use Drupal\Core\Site\Settings;
+
+function development_badge_page_bottom(&$page_bottom) {
+  $website_mode = development_badge_get_website_mode();
+
+  $page_bottom['development_badge'] = [
+    '#theme' => 'development_badge',
+    '#website_mode' => $website_mode,
+    '#development_badge_array' => development_badge_get_badge_values($website_mode),
+  ];
+}
 
 /**
  * Implements hook_theme().
@@ -10,7 +21,53 @@ function development_badge_theme($existing, $type, $theme, $path)
 {
   return [
     'development_badge' => [
-      'variables' => ['website_mode' => NULL, 'website_mode_array' => []],
+      'variables' => [
+        'website_mode' => NULL, 
+        'development_badge_array' => []
+      ],
     ],
   ];
 }
+
+/**
+ * 
+ * @return string
+ */
+function development_badge_get_website_mode() {
+  $website_mode = Settings::get('website_mode');
+  if($website_mode) {
+    return $website_mode;
+  }
+  return 'prod';
+}
+
+/**
+ * 
+ * @return (string[])[] 
+ */
+function development_badge_get_badge_values_array() {
+  return [
+    'prod'=>[
+      'display' => false,
+      'title' => 'Production'
+    ],
+    'stage'=>[
+      'display' => true,
+      'title' => 'Staging'
+    ],
+    'dev'=>[
+      'display' => true,
+      'title' => 'Development'
+    ],
+  ];
+}
+
+/**
+ * 
+ * @param string $website_mode 
+ * @return string[] 
+ */
+function development_badge_get_badge_values($website_mode) {
+  return development_badge_get_badge_values_array()[$website_mode];
+}
+

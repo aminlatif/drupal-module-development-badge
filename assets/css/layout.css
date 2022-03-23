@@ -1,0 +1,21 @@
+:root {
+  --development-badge-distance: 15px;
+  --development-badge-padding: 5px;
+  --development-badge-defualt-color: white;
+  --development-badge-defualt-background-color: gray;
+}
+
+.development-badge {
+  position: fixed;
+  background-color: var(--development-badge-defualt-background-color);
+  color: var(--development-badge-defualt-color);
+  bottom: calc(3 * var(--development-badge-distance));
+  right: var(--development-badge-distance);
+  padding: var(--development-badge-padding);
+}
+[dir=rtl] .development-badge {
+  right: auto;
+  left: var(--development-badge-distance);
+}
+
+/*# sourceMappingURL=layout.css.map */

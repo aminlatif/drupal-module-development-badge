@@ -1,0 +1,24 @@
+:root {
+    --development-badge-border-radius: 3px;
+    --development-badge-opacity: 0.75;
+    --development-badge-background-color-dev: red;
+    --development-badge-background-color-stage: orange;
+    --development-badge-background-color-prod: green;
+}
+
+.development-badge {
+    &.dev{
+        --development-badge-background-color: var(--development-badge-background-color-dev);
+    }
+
+    &.stage{
+        --development-badge-background-color: var(--development-badge-background-color-stage);
+    }
+
+    &.prod{
+        --development-badge-background-color: var(--development-badge-background-color-prod);
+    }
+    background-color: var(--development-badge-background-color);
+    border-radius: var(--development-badge-border-radius);
+    opacity: var(--development-badge-opacity);
+}
